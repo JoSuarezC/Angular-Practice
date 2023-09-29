@@ -1,0 +1,80 @@
+@use 'common' as *;
+
+.coned-input {
+  background-color: $white;
+  border-bottom: 2px solid $medium-gray;
+  padding: $spacing-400 0 $spacing-50;
+  width: 100%;
+  color: $dark-gray;
+  touch-action: manipulation;
+  font: calculate-rem(20) / 1.3 $open-sans-family;
+  font-weight: $open-sans-semi-bold;
+
+  @include bp-medium {
+    text-indent: $spacing-200;
+    font-size: calculate-rem(22);
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: $spacing-600;
+    width: 100%;
+
+    @include bp-medium {
+      margin-bottom: $spacing-800;
+    }
+
+    &--small-margin {
+      @include bp-small {
+        margin-bottom: $spacing-100;
+      }
+    }
+
+    &--filled {
+
+      .coned-input {
+        border-color: $green;
+      }
+
+      .coned-input__label {
+        color: $green;
+      }
+    }
+
+    &--invalid {
+
+      .coned-input {
+        border-color: $red;
+      }
+
+      .coned-input__label {
+        color: $red;
+      }
+    }
+  }
+
+  &__label {
+    position: absolute;
+    bottom: 6px;
+    z-index: 1;
+    cursor: text;
+    color: $medium-gray;
+    font: calculate-rem(18) / 1.3 $open-sans-family;
+    font-weight: $open-sans-semi-bold;
+    overflow: hidden;
+
+    @include bp-medium {
+      padding-left: $spacing-200;
+      font-size: calculate-rem(20);
+    }
+  }
+
+  &__container--filled &__label,
+  &__container:focus-within &__label {
+    top: 0;
+    font: calculate-rem(14) $open-sans-family;
+    font-weight: $open-sans-semi-bold;
+  }
+}

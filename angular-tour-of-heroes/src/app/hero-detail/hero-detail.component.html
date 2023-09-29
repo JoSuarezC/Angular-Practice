@@ -1,0 +1,11 @@
+<ng-template [ngIf]="hero">
+  <section>
+    <h2> {{hero.name | uppercase}} Details </h2>
+    <p><span>id: </span>{{hero.id}}</p>
+    <div>
+      <label for="name">Hero name: </label>
+      <input id="name" name="hero-name" [(ngModel)]="hero.name" placeholder="name">
+    </div> 
+  </section>
+  <button (click)="goBack()">go back</button>
+</ng-template>

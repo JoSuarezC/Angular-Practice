@@ -1,0 +1,20 @@
+<label
+  class="coned-radio"
+  [for]="id">
+  <input
+    class="coned-radio__input"
+    [id]="id"
+    [name]="name"
+    [checked]="checked"
+    [required]="required"
+    type="radio"
+    [value]="value"
+    [attr.aria-describedby]="ariaDescribedby"
+    (change)="handleChange($event)"
+  />
+  <span class="coned-radio__indicator">
+  </span>
+  <span class="coned-radio__label-name">
+    {{ label }}
+  </span>
+</label>

@@ -1,0 +1,16 @@
+<button
+  (click)="onDisplayDetails()">
+  Display Details
+</button>
+
+<p *ngIf="showDetail">
+  Hello there!
+</p>
+
+<p 
+  *ngFor="let clickLogged of clicksLogged; let index = index;"
+  [ngStyle]="{backgroundColor: index > 4 ? 'blue' : 'white'}"
+  [ngClass]="{'white-color': index > 4}"
+>
+{{ clickLogged }}
+</p>

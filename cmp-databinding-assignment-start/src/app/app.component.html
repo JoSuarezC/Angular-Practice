@@ -1,0 +1,9 @@
+<app-game-control (onIncremental)= "onIncretalDone($event)">
+</app-game-control>
+
+<ng-container *ngFor="let number of incrementalNumbers; even as isEven">
+  <app-even *ngIf="isEven">
+  </app-even>
+  <app-odd *ngIf="!isEven">
+  </app-odd>
+</ng-container>

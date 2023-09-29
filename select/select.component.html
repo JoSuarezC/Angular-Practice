@@ -1,0 +1,38 @@
+<div class="select__container">
+  <label
+    class="select__label"
+    [class.select__label--active]="selectedOption && (selectedOption !== label)"
+    [for]="id">
+    {{ label }}
+  </label>
+  <select
+    class="select"
+    [class.select--active]="selectedOption && (selectedOption !== label)"
+    [class.select--invalid]="showError"
+    [name]="name"
+    [id]="id"
+    [disabled]="disabled"
+    [required]="required"
+    (change)="handleChange($event)">
+    <option
+      *ngFor="let option of options; ngForTrackBy:option"
+      [value]="option"
+      [selected]="selectedOption === option"
+      [hidden]="option === label"
+    >
+      {{ option }}
+    </option>
+  </select>
+  <span
+    aria-hidden="true"
+    class="select__arrow icon-carrot">
+  </span>
+  <p
+    [id]="errorID"
+    *ngIf="showError"
+    class="error-block">
+    <span aria-hidden="true" class="error-icon">
+    </span>
+    {{ messageOnError }}
+  </p>
+</div>

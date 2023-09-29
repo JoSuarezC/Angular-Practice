@@ -1,0 +1,219 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <h1>
+        Submit a Claim
+      </h1>
+
+      <h2>
+        <b>
+          Requirements
+        </b>
+      </h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel est auctor, fermentum dolor vitae, venenatis lorem. Proin malesuada quam quam, nec pharetra est dapibus id. Morbi ac massa pharetra, elementum neque at, dapibus nunc. In tincidunt mauris magna, vitae imperdiet metus fringilla in. Ut auctor metus orci. Nulla luctus elit enim. Mauris sit amet nunc sit amet massa gravida tristique non ac est. Donec malesuada porta lorem, eget posuere urna euismod ut. In lacinia cursus semper.
+      </p>
+      <ul>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Integer sed tellus ac augue scelerisque viverra.</li>
+        <li>Vestibulum non est vitae nibh consectetur semper.</li>
+        <li>Fusce eu lacus gravida, dictum nibh ut, gravida nunc.</li>
+      </ul>
+      <p>
+        In eros sem, ornare eu pulvinar sed, gravida nec mi. Quisque eu varius nunc. Donec vulputate massa sit amet quam interdum, ac semper lacus porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam sodales enim at dui feugiat eleifend. Sed dapibus dui facilisis dolor suscipit, ac interdum nibh molestie. Sed ultricies libero elit, faucibus blandit tortor tempus mattis. Pellentesque facilisis mi quis sapien auctor blandit. Curabitur ut justo et ante iaculis pretium et eu magna. Duis dapibus tincidunt libero id malesuada. Cras elit urna, vestibulum vitae augue facilisis, volutpat lobortis felis. Sed pulvinar arcu sed sem mollis lobortis
+      </p>
+      <form (ngSubmit)="onSubmit()" #form="ngForm" appFocusFirstInvalidInput>
+        <div
+          id="user-data"
+          class="fieldset-wrapper"
+          ngModelGroup="userData"
+          #userData="ngModelGroup">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              class="form-control"
+              ngModel
+              name="username"
+              required
+              #userName="ngModel"
+              [attr.aria-invalid]="!userName.valid && userName.touched"
+              [attr.aria-describedby]="!userName.valid && userName.touched ? 'userNameError' : null"
+            >
+            <p
+              *ngIf="!userName.valid && userName.touched"
+              class="help-block"
+              id="userNameError"
+            >
+              Error: Username is required
+            </p>
+          </div>
+          <button
+            class="btn btn-default"
+            type="button"
+            (click)="validateUsername()">
+            Validate username availability
+          </button>
+          <p
+            *ngIf="isUsernameValidNoteShown"
+            #note
+            role="alert"
+          >
+            {{ availabilityNote }}
+          </p>
+          <div class="form-group">
+            <label for="email">Mail</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              ngModel
+              name="email"
+              required
+              email
+              #email="ngModel"
+              [attr.aria-invalid]="!email.valid && email.touched"
+              [attr.aria-describedby]="!email.valid && email.touched ? 'emailError' : null"
+            >
+            <p
+              id="emailError"
+              class="help-block"
+              *ngIf="!email.valid && email.touched">
+              Error: Please enter a valid email address!
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" id="passwordLabel">
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            ngModel
+            name="password"
+            required
+            #password="ngModel"
+            aria-labelledby="passwordLabel passwordNote"
+            [attr.aria-invalid]="!password.valid && password.touched"
+            [attr.aria-describedby]="!password.valid && password.touched ? 'passwordError' : null"
+          >
+          <p
+            id="passwordError"
+            class="help-block"
+            *ngIf="!password.valid && password.touched">
+            Error: Please enter a valid password!
+          </p>
+          <p
+            id="passwordNote"
+            class="help-block">
+            Your password should have numbers, symbols & letters.
+          </p>
+        </div>
+        <div role="group" aria-labelledby="secretHeading">
+          <h3 id="secretHeading">
+            Secret Question
+          </h3>
+          <div class="form-group">
+            <label for="secret">Choose your question</label>
+            <select
+              id="secret"
+              class="form-control"
+              [ngModel]="defaultQuestion"
+              #question="ngModel"
+              required
+              [attr.aria-invalid]="!question.valid && question.touched"
+              [attr.aria-describedby]="!question.valid && question.touched ? 'questionError' : null"
+              name="secret">
+              <option value="pet">Your first Pet?</option>
+              <option value="teacher">Your first teacher?</option>
+            </select>
+            <p
+              id="questionError"
+              class="help-block"
+              *ngIf="!question.valid && question.touched">
+              Error: Please select a secret question!
+            </p>
+          </div>
+          <div class="form-group">
+            <label for="answer">
+              Type your answer
+            </label>
+            <textarea
+              id="answer"
+              class="form-control"
+              name="questionAnswer"
+              rows="3"
+              #answerInput="ngModel"
+              required
+              [attr.aria-invalid]="!answerInput.valid && answerInput.touched"
+              [attr.aria-describedby]="!answerInput.valid && answerInput.touched ? 'answerError answerNote' : 'answerNote'"
+              [(ngModel)]="answer">
+            </textarea>
+            <p
+              id="answerError"
+              class="help-block"
+              *ngIf="!answerInput.valid && answerInput.touched">
+              Error: Please enter a valid email address!
+            </p>
+          </div>
+          <p
+            id="answerNote"
+            class="help-block">
+            Your answer should be private!
+          </p>
+          <p role="status">
+            Your reply: {{ answer }}
+          </p>
+        </div>
+
+        <fieldset>
+          <legend>I want to receive (Optional)</legend>
+          <div class="form-group">
+            <input type="checkbox" name="newsletter" id="check_1" (change)="selectNewsletter()">
+            <label for="check_1">The weekly newsletter</label>
+          </div>
+          <div class="form-group">
+            <input type="checkbox" name="company_offers" id="check_2">
+            <label for="check_2">Offers from the company</label>
+          </div>
+          <div class="form-group">
+            <input type="checkbox" name="assoc_offers" id="check_3">
+            <label for="check_3">Offers from associated companies</label>
+          </div>
+        </fieldset>
+
+        <p role="status" *ngIf="isNewsNoteShown">
+          You will receive the best email newsletter!
+        </p>
+        <button
+          class="btn btn-primary"
+          type="submit">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+  <hr/>
+  <section class="row" *ngIf="submitted" #dataShown tabindex="-1">
+    <div class="col-xs-12">
+      <h2>
+        Your Data
+      </h2>
+      <p>
+        Username: {{this.user.username}}
+      </p>
+      <p>
+        Mail: {{this.user.email}}
+      </p>
+      <p>
+        Secret Question: {{this.user.secretQuestion}}
+      </p>
+      <p>
+        Answer: {{this.user.answer}}
+      </p>
+    </div>
+  </section>
+</div>

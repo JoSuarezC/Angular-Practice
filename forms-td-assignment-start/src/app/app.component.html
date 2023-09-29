@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <h1>
+        Form Example
+      </h1>
+      <form
+        #form="ngForm"
+        (ngSubmit)="onSubmit()">
+        <p
+          class="alert"
+          role="alert"
+          *ngIf="!form.valid && form.touched">
+          Error: Form data is invalid!
+        </p>
+        <div class="form-group">
+          <label>
+            Email
+            <input
+              #email="ngModel"
+              class="form-control"
+              ngModel
+              type="email"
+              email
+              required
+              name="email"
+              aria-describedby="emailError"/>
+          </label>
+          <p
+            id="emailError"
+            *ngIf="!email.valid && email.touched">
+            Error: Email field is invalid!
+          </p>
+        </div>
+        <div class="form-group">
+          <label>
+            Subscriptions
+            <select
+              #subscription="ngModel"
+              class="form-control"
+              [ngModel]="defaultSubscription"
+              name="subscription"
+              required>
+              <option value="Basic">
+                Basic
+              </option>
+              <option value="Advanced">
+                Advanced
+              </option>
+              <option value="Pro">
+                Pro
+              </option>
+            </select>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>
+            Password
+            <input
+              #password="ngModel"
+              class="form-control"
+              ngModel
+              type="password"
+              required
+              name="password"
+              aria-describedby="passwordError"/>
+          </label>
+          <p
+            id="passwordError"
+            *ngIf="!password.valid && form.touched">
+            Error: Password field is invalid!
+          </p>
+        </div>
+        <button 
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!form.valid">
+          Submit
+        </button>
+      </form>
+      <!-- Add a Form with the following Inputs (and Validators)
+           1) Mail address (should not be empty and should be an email address)
+           2) A Dropdown which allows the user to select from three different Subscriptions ("Basic", "Advanced", "Pro")
+              Set "Advanced" as Default
+           3) A Password field (should not be empty)
+           4) A Submit Button
+
+           Display a warning message if the Form is invalid AND was touched. Display a warning message below each input if it's invalid.
+
+           Upon submitting the form, you should simply print the Value of the Form to the Console.
+           Optionally, display it in your template.
+      -->
+    </div>
+  </div>
+  <hr/>
+  <div class="row" *ngIf="submitted">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <h2>
+        Your Data
+      </h2>
+      <p>
+        Email: {{subscriptionData.email}}
+      </p>
+      <p>
+        Subscription Type: {{subscriptionData.subscriptionType}}
+      </p>
+      <p>
+        Password: {{subscriptionData.password}}
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div
+  class="coned-input__container"
+  [class.coned-input__container--small-margin]="isSmallMarginOnMobile"
+  [class.coned-input__container--filled]="isFilled"
+  [class.coned-input__container--invalid]="showError"
+>
+  <label
+    class="coned-input__label"
+    [for]="id">
+    {{ label }}
+  </label>
+  <input
+    class="coned-input"
+    [id]="id"
+    [name]="name"
+    [type]="type"
+    [required]="required"
+    [value]="value"
+    [attr.aria-labelledby]="ariaLabelledby"
+    [attr.aria-describedby]="ariaDescribedby + ' ' + (showError ? errorID : '')"
+    [attr.inputmode]="inputmode"
+    [attr.min]="min"
+    [attr.pattern]="pattern"
+    [attr.placeholder]="placeholder"
+    (change)="handleChange($event)"
+    (input)="handleInputEvent($event)"
+  />
+  <p
+    [id]="errorID"
+    *ngIf="showError"
+    class="error-block">
+    <span aria-hidden="true" class="error-icon">
+    </span>
+    {{ messageOnError }}
+  </p>
+</div>

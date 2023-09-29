@@ -1,0 +1,65 @@
+// ============ RADIO ===============
+@use 'common' as *;
+
+.coned-radio {
+  background-clip: border-box;
+  display: flex;
+  align-items: center;
+  color: $dark-gray;
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  &__label-name {
+    color: $medium-gray;
+    font: calculate-rem(16) $open-sans-family;
+    font-weight: $open-sans-semi-bold;
+    line-height: 1.5;
+  }
+
+  &__indicator {
+    border-radius: 50%;
+    position: relative;
+    margin-right: $spacing-400;
+    border: 2px solid $medium-gray;
+    background-color: $white;
+    width: 50px;
+    height: 50px;
+  }
+
+  &__input:focus ~ &__indicator {
+    &::after {
+      @extend .coned-focus-outline;
+      position: absolute;
+      z-index: 1;
+      top: -5px;
+      left: -5px;
+      padding: 2px;
+      width: calc(100% + 10px);
+      height: calc(100% + 10px);
+      content: '';
+    }
+  }
+
+  &__input:checked ~ &__indicator {
+    border-color: $green;
+
+    &::before {
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: $green;
+      width: 80%;
+      height: 80%;
+      content: '';
+    }
+  }
+
+  &__input:checked ~ &__label-name {
+    color: $green;
+  }
+}
